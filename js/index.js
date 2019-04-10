@@ -25,13 +25,42 @@ document.addEventListener('keyup', function (event) {
 
 //wheel
 const headerP2 = document.querySelector('.intro p');
-headerP2.addEventListener("wheel", wheel);
-    function wheel() {
-        this.style.fontSize = "35px";
-    }
+headerP2.addEventListener('wheel', wheel);
+function wheel() {
+    this.style.fontSize = "35px";
+}
 
 
 //drag / drop
+const headerImg = document.querySelector('.intro img');
+headerImg.addEventListener('dragend', suchaDrag);
+function suchaDrag() {
+    this.style.width = '200px';
+}
+
+//clicking logo refreshes page
+const logoRefresh = document.querySelector('.logo-heading');
+logoRefresh.addEventListener('click', () => {
+    window.setTimeout(() => {
+        window.location.reload(true);
+    }, 200);
+});
+
+
+//Focus
+const imageContent = document.querySelectorAll('.img-content');
+imageContent.forEach(function (element) {
+    element.tabIndex = 1;
+    element.addEventListener('focus', function (event) {
+        event.target.style.border = '12px solid red';
+    });
+    element.addEventListener('blur', function(event) {
+        event.target.style.border = '';
+      });
+});
+
+
+
 
 
 
@@ -63,13 +92,7 @@ busImg.addEventListener('click', function (event) {
     }, 900);
 }, false);
 
-//clicking logo refreshes page
-const logoRefresh = document.querySelector('.logo-heading');
-logoRefresh.addEventListener('click', () => {
-    window.setTimeout(() => {
-        window.location.reload(true);
-    }, 200);
-});
+
 
 //click footer vanish footer
 const foot = document.querySelector('footer');
